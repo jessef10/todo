@@ -22,12 +22,12 @@ if (Array.isArray(savedTodos)) {
 }
 
 // Creates an id
-function createId() {
+const createId = () => {
   return '' + new Date().getTime();
 }
 
 // Creates a todo
-function createTodo(title, dueDate) {
+const createTodo = (title, dueDate) => {
   const id = createId();
 
   todos.push({
@@ -40,8 +40,8 @@ function createTodo(title, dueDate) {
 }
 
 // Deletes a todo
-function removeTodo(idToDelete) {
-  todos = todos.filter(function (todo) {
+const removeTodo = idToDelete => {
+  todos = todos.filter(todo => {
     if (todo.id === idToDelete) {
       return false;
     } else {
@@ -53,12 +53,12 @@ function removeTodo(idToDelete) {
 }
 
 // Saves a todo
-function saveTodos() {
+const saveTodos = () => {
   localStorage.setItem('todos', JSON.stringify(todos));
 }
 
 // Controller
-function addTodo() {
+const addTodo = () => {
   const textbox = document.querySelector('#todo-title');
   const title = textbox.value;
 
@@ -69,7 +69,7 @@ function addTodo() {
   render();
 }
 
-function deleteTodo(event) {
+const deleteTodo = event => {
   const deleteButton = event.target;
   const idToDelete = deleteButton.id;
 
@@ -78,7 +78,7 @@ function deleteTodo(event) {
 }
 
 // View
-function render() {
+const render = () => {
   // reset our list-style:
   document.querySelector('#todo-list').innerHTML = '';
 
