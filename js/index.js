@@ -1,3 +1,4 @@
+// Model
 let todos = [{
   title: 'Get groceries',
   dueDate: '2021-10-02',
@@ -12,19 +13,11 @@ let todos = [{
   id: 'id3'
 }];
 
-render();
-
 function createId() {
   return '' + new Date().getTime();
 }
 
-function addTodo() {
-  let textbox = document.querySelector('#todo-title');
-  let title = textbox.value;
-
-  const datePicker = document.querySelector('#date-picker');
-  const dueDate = datePicker.value;
-
+function createTodo(title, dueDate) {
   const id = createId();
 
   todos.push({
@@ -32,14 +25,9 @@ function addTodo() {
     dueDate: dueDate,
      id: id
   });
-
-  render();
 }
 
-function deleteTodo(event) {
-  const deleteButton = event.target;
-  const idToDelete = deleteButton.id;
-
+function removeTodo(idToDelete) {
   todos = todos.filter(function (todo) {
     if (todo.id === idToDelete) {
       return false;
@@ -47,10 +35,31 @@ function deleteTodo(event) {
       return true;
     }
   });
+}
 
+render();
+
+// Controller
+function addTodo() {
+  let textbox = document.querySelector('#todo-title');
+  let title = textbox.value;
+
+  const datePicker = document.querySelector('#date-picker');
+  const dueDate = datePicker.value;
+
+  createTodo(title, dueDate);
   render();
 }
 
+function deleteTodo(event) {
+  const deleteButton = event.target;
+  const idToDelete = deleteButton.id;
+
+  removeTodo(idToDelete);
+  render();
+}
+
+// View
 function render() {
   // reset our list-style:
   document.querySelector('#todo-list').innerHTML = '';
