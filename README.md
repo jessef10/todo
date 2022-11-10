@@ -1,2 +1,2 @@
 # todo
-Simple to do list application
+Simple to do list application.
